@@ -15,5 +15,5 @@
 
 
 ### Ссылка на проект:
-### https://escar85.github.io/mesto-react/
+### https://escar85.github.io/mesto-react-auth/
 
