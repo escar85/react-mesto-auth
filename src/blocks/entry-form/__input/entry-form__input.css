@@ -1,0 +1,16 @@
+.entry-form__input {
+  background: #000;
+  color: #CCC;
+  border: unset;
+  border-bottom: 2px solid #CCC;
+  margin: 30px;
+  font-size: 14px;
+  line-height: 17px;
+  padding-bottom: 13px;
+}
+
+.entry-form__input:first-of-type {
+  margin-top: 50px;
+}
+
+

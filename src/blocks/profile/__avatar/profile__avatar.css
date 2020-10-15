@@ -1,0 +1,12 @@
+.profile__avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile__avatar:hover {
+  cursor: url('../../../images/edit__cursor.svg'), auto;
+  opacity: 0.6;
+  transition: all 1s linear;
+}

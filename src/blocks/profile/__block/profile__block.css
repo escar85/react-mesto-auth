@@ -1,0 +1,9 @@
+.profile__block {
+  margin-left: 30px;
+}
+
+@media (max-width: 600px) {
+  .profile__block {
+    margin: 0;
+  }
+}

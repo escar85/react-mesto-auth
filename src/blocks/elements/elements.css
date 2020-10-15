@@ -1,0 +1,31 @@
+@import url('../element/element.css');
+@import url('../element/__image/element__image.css');
+@import url('../element/__info/element__info.css');
+@import url('../element/__title/element__title.css');
+@import url('../element/__like-button/element__like-button.css');
+@import url('../element/__delete-button/element__delete-button.css');
+@import url('../element/__like-button/_active/element__like-button_active.css');
+@import url('../element/__like-area/element__like-area.css');
+@import url('../element/__like-count/element__like-count.css');
+
+.elements {
+  max-width: 882px;
+  margin: 46px auto 0;
+  list-style: none;
+  width: 100%;
+  margin: 46px auto 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 282px);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 18px;
+  grid-row-gap: 21px;
+  padding: 0;
+  justify-content: space-around;
+}
+
+@media (max-width: 920px) {
+  .elements {
+    margin-top: 36px;
+    grid-row-gap: 20px;
+  }
+}

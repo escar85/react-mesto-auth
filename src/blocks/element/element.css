@@ -1,0 +1,17 @@
+/* @import url('./__image/element__image.css');
+@import url('./__info/element__info.css');
+@import url('./__title/element__title.css');
+@import url('./__like-button/element__like-button.css');
+@import url('./__delete-button/element__delete-button.css');
+@import url('./__like-button/_active/element__like-button_active.css');
+@import url('./__like-area/element__like-area.css');
+@import url('./__like-count/element__like-count.css'); */
+
+
+.element {
+  position: relative;
+  min-width: 282px;
+  border-radius: 10px;
+  background-color: white;
+  overflow: hidden;
+}

@@ -1,0 +1,13 @@
+@import url('./__title/entry-form__title.css');
+@import url('./__input/entry-form__input.css');
+@import url('./__submit-button/entry-form__submit-button.css');
+@import url('./__link/entry-form__link.css');
+
+
+.entry-form {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin: 60px auto 80px;
+  width: 358px;
+}
