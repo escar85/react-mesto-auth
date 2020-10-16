@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Route, Redirect, Switch, useHistory } from 'react-router-dom';
 
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
@@ -29,14 +29,14 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
-  const [isConfirmDeleteCardPopupOpen, setConfirmDeleteCardPopupOpen] = React.useState();
+  const [isConfirmDeleteCardPopupOpen, setConfirmDeleteCardPopupOpen] = React.useState(false);
 
   //
   const [selectedCard, setSelectedCard] = React.useState();
   const [currentUser, setCurrentUser] = React.useState([]);
   const [cards, setCards] = React.useState([]);
   const [loggedIn, setLoggedIn] = React.useState(false);
-  const [isSuccessAuth, setIsSuccessAuth] = React.useState();
+  const [isSuccessAuth, setIsSuccessAuth] = React.useState(false);
   const [email, setEmail] = React.useState('');
 
   const history = useHistory();
@@ -66,7 +66,7 @@ function App() {
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setSelectedCard(undefined);
-    setConfirmDeleteCardPopupOpen('');
+    setConfirmDeleteCardPopupOpen(false);
     setIsInfoTooltipOpen(false);
   }
 
@@ -74,12 +74,12 @@ function App() {
   function handleUpdateUser(newInfo) {
     api.setUserInfo(newInfo)
       .then((res) => {
-        setCurrentUser(res)
+        setCurrentUser(res);
+        closeAllPopups();
       })
       .catch((err) => {
         console.log(err);
       });
-    closeAllPopups();
   }
 
   // обработчик обновления аватара
@@ -87,11 +87,11 @@ function App() {
     api.setUserAvatar(newAvatar)
       .then((res) => {
         setCurrentUser(res);
+        closeAllPopups();
       })
       .catch((err) => {
         console.log(err);
       });
-    closeAllPopups();
   }
 
   // обработчик постановки/снятия лайка карточек
@@ -115,24 +115,24 @@ function App() {
     api.deleteCard(card._id)
       .then(() => {
         const newCards = cards.filter((c) => c._id !== card._id);
-        setCards(newCards)
+        setCards(newCards);
+        closeAllPopups();
       })
       .catch((err) => {
         console.log(err);
       });
-    closeAllPopups();
   }
 
   // обработчик добавления новой карточки
   function handleAddPlaceSubmit(newCard) {
     api.addCard(newCard)
       .then((newCard) => {
-        setCards([...cards, newCard])
+        setCards([...cards, newCard]);
+        closeAllPopups();
       })
       .catch((err) => {
         console.log(err);
       });
-    closeAllPopups();
   }
 
   // эффект для получения массива карточек и данных пользователя с сервера
@@ -168,18 +168,17 @@ function App() {
   function onRegister(authData) {
     authApi.registerUser(authData)
       .then((res) => {
-        return res
-      },
-        setIsSuccessAuth(true),
-        setIsInfoTooltipOpen(true),
-        <Redirect to='/sign-in' />
-      )
+        if (res) {
+          setIsSuccessAuth(true);
+          history.push('/sign-in');
+        }
+      })
       .catch((err) => {
         console.log(err)
-      },
-        setIsSuccessAuth(false),
-        setIsInfoTooltipOpen(true)
-      )
+      })
+      .finally(() => {
+        setIsInfoTooltipOpen(true);
+      })
   }
 
 
@@ -220,7 +219,7 @@ function App() {
 
   useEffect(() => {
     tokenCheck();
-  })
+  }, [])
 
   return (
     <div className="root">
@@ -258,7 +257,7 @@ function App() {
           </Route>
 
           <Route>
-            {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-up" />}
+            {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
           </Route>
 
         </Switch>

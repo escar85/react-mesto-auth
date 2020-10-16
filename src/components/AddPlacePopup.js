@@ -13,9 +13,12 @@ function AddPlacePopup(props) {
       name: placeName.current.value,
       link: placeLink.current.value
     });
+  }
+
+  React.useEffect(() => {
     placeName.current.value = '';
     placeLink.current.value = '';
-  }
+  }, [props.isOpen])
 
   return (
     <PopupWithForm
