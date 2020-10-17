@@ -68,6 +68,7 @@ function App() {
     setSelectedCard(undefined);
     setConfirmDeleteCardPopupOpen(false);
     setIsInfoTooltipOpen(false);
+    setIsSuccessAuth(false);
   }
 
   // обработчик обновления данных пользователя
