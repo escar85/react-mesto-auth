@@ -75,7 +75,7 @@ class Api {
 
 // создаем класс для работы с Api
 const authApi = new Api({
-  baseUrl: 'https://auth.nomoreparties.co',
+  baseUrl: 'https://escar.students.nomoreparties.space',
   headers: {
     'Content-Type': 'application/json'
   }

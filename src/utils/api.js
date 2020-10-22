@@ -144,11 +144,19 @@ class Api {
 
 // создаем класс для работы с Api
 const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-13',
+  baseUrl: 'https://escar.students.nomoreparties.space',
   headers: {
-    authorization: 'b8b572e2-0aa8-4f92-a0e1-a67154852e96',
     'Content-Type': 'application/json'
   }
 });
 
 export default api;
+
+
+// const api = new Api({
+//   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-13',
+//   headers: {
+//     authorization: 'b8b572e2-0aa8-4f92-a0e1-a67154852e96',
+//     'Content-Type': 'application/json'
+//   }
+// });

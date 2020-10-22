@@ -4,7 +4,7 @@
   "author": "Dmitry Melnik",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://escar85.github.io/mesto-react-auth/",
+  "homepage": "/",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -21,7 +21,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -b master -d build"
+    "deploy": "npm run build && scp -r ./build/* escar1985@84.201.143.66:/home/escar1985/frontend"
   },
   "eslintConfig": {
     "extends": "react-app"
