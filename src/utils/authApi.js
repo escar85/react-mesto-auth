@@ -6,7 +6,7 @@ class Api {
   }
 
   registerUser(authData) {
-    return fetch(`${this._baseUrl}/signup`, {
+    return fetch(`${this._baseUrl}/sign-up`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
@@ -26,7 +26,7 @@ class Api {
   }
 
   loginUser(authData) {
-    return fetch(`${this._baseUrl}/signin`, {
+    return fetch(`${this._baseUrl}/sign-in`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
@@ -75,7 +75,7 @@ class Api {
 
 // создаем класс для работы с Api
 const authApi = new Api({
-  baseUrl: 'https://escar.students.nomoreparties.space',
+  baseUrl: 'https://api.escar.students.nomoreparties.space',
   headers: {
     'Content-Type': 'application/json'
   }
