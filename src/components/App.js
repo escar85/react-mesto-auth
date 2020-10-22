@@ -137,16 +137,16 @@ function App() {
   }
 
   // эффект для получения массива карточек и данных пользователя с сервера
-  // React.useEffect(() => {
-  //   Promise.all([api.getInitialCards(), api.getUserInfo()])
-  //     .then(([data, user]) => {
-  //       setCards(data);
-  //       setCurrentUser(user)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
+  React.useEffect(() => {
+    Promise.all([api.getInitialCards(), api.getUserInfo()])
+      .then(([data, user]) => {
+        setCards(data);
+        setCurrentUser(user)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   // эффект для закрытия попапов кликом на оверлей или по нажатию клавиши "ESC"
   React.useEffect(() => {
