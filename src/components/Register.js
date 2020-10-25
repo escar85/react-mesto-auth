@@ -55,6 +55,3 @@ function Register(props) {
 }
 
 export default Register;
-
-
-//{"data":{"_id":"5f85e2be86203500127df01e","email":"escar1985@yandex.ru"}}

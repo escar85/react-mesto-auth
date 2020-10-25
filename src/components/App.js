@@ -97,12 +97,12 @@ function App() {
 
   // обработчик постановки/снятия лайка карточек
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser.data._id);
 
     api.changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
         // Формируем новый массив на основе имеющегося, подставляя в него новую карточку
-        const newCards = cards.map((c) => c._id === card._id ? newCard : c);
+        const newCards = cards.map((c) => c._id === card._id ? newCard.data : c);
         // Обновляем стейт
         setCards(newCards);
       })
@@ -188,12 +188,14 @@ function App() {
   function onLogin(authData) {
     authApi.loginUser(authData)
       .then((data) => {
-        tokenCheck()
-        return data.token
-      },
-        setLoggedIn(true),
-        history.push('/')
-      )
+        if (data) {
+          tokenCheck();
+          setLoggedIn(true);
+          history.push('/');
+          return data.token;
+        }
+        throw new Error('Ошибка авторизации');
+      })
       .catch(err => {
         console.log(err);
       })

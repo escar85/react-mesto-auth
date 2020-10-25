@@ -10,13 +10,13 @@ function Main(props) {
     <>
       <section className="profile">
         <div className="profile__info">
-          <img alt="аватар пользователя" src={currentUser.avatar} className="profile__avatar" onClick={props.onEditAvatar} />
+          <img alt="аватар пользователя" src={currentUser.data.avatar} className="profile__avatar" onClick={props.onEditAvatar} />
           <div className="profile__block">
             <div className="profile__name-area">
-              <h1 className="profile__name">{currentUser.name}</h1>
+              <h1 className="profile__name">{currentUser.data.name}</h1>
               <button type="button" aria-label="edit-profile" className="profile__edit-button" onClick={props.onEditProfile}></button>
             </div>
-            <p className="profile__job">{currentUser.about}</p>
+            <p className="profile__job">{currentUser.data.about}</p>
           </div>
         </div>
         <button type="button" aria-label="add-card" className="profile__card-add-button" onClick={props.onAddPlace}></button>

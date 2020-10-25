@@ -6,10 +6,10 @@ function Card(props) {
   const currentUser = React.useContext(CurrentUserContext);
 
   // проверяем являемся ли мы владельцем карточки
-  const isOwn = props.card.owner._id === currentUser._id;
+  const isOwn = props.card.owner === currentUser.data._id;
 
   // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
-  const isLiked = props.card.likes.some(i => i._id === currentUser._id);
+  const isLiked = props.card.likes.some(i => i === currentUser.data._id);
 
   // переменная учтанавливает видимость кнопки "удаления карточки" в зависимости от владельца карточки
   const cardDeleteButtonClassName = (
@@ -22,13 +22,13 @@ function Card(props) {
     props.onCardClick(props.card);
   }
 
-function handleLikeClick() {
-  props.onCardLike(props.card);
-}
+  function handleLikeClick() {
+    props.onCardLike(props.card);
+  }
 
-function handleDeleteClick() {
-  props.onCardDelete(props.card);
-}
+  function handleDeleteClick() {
+    props.onCardDelete(props.card);
+  }
 
   return (
     <li className="element">

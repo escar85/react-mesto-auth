@@ -38,7 +38,6 @@ class Api {
         if (res.ok) {
           return res.json();
         }
-
         return Promise.reject(`Ошибка: ${res.status}`);
       })
       .catch((err) => {
@@ -52,12 +51,10 @@ class Api {
       method: 'GET',
       headers: this._headers
     })
-
       .then(res => {
         if (res.ok) {
           return res.json();
         }
-
         return Promise.reject(`Ошибка: ${res.status}`);
       })
       .catch((err) => {
@@ -88,7 +85,7 @@ class Api {
   }
 
   changeLikeCardStatus(cardId, isLiked) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: isLiked ? 'PUT' : 'DELETE',
       headers: this._headers,
     })
@@ -146,17 +143,9 @@ class Api {
 const api = new Api({
   baseUrl: 'https://api.escar.students.nomoreparties.space',
   headers: {
+    'Authorization': `Bearer ${localStorage.getItem('token')}`,
     'Content-Type': 'application/json'
   }
 });
 
 export default api;
-
-
-// const api = new Api({
-//   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-13',
-//   headers: {
-//     authorization: 'b8b572e2-0aa8-4f92-a0e1-a67154852e96',
-//     'Content-Type': 'application/json'
-//   }
-// });

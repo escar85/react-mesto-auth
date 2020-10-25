@@ -10,11 +10,12 @@ class Api {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
-        password: authData.password,
-        email: authData.email
+        email: authData.email,
+        password: authData.password
       })
     })
       .then(res => {
+        console.log(res)
         if (res.ok) {
           return res.json();
         }
@@ -57,7 +58,7 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
       headers: {
-        'Accept': 'application/json',
+        "Accept": "application/json",
         "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`
       }
@@ -68,10 +69,8 @@ class Api {
         console.log(err);
       })
   }
+
 }
-
-
-
 
 // создаем класс для работы с Api
 const authApi = new Api({
