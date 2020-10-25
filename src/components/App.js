@@ -75,7 +75,7 @@ function App() {
   function handleUpdateUser(newInfo) {
     api.setUserInfo(newInfo)
       .then((res) => {
-        setCurrentUser(res);
+        setCurrentUser(res.data);
         closeAllPopups();
       })
       .catch((err) => {
@@ -87,7 +87,7 @@ function App() {
   function handleUpdateAvatar(newAvatar) {
     api.setUserAvatar(newAvatar)
       .then((res) => {
-        setCurrentUser(res);
+        setCurrentUser(res.data);
         closeAllPopups();
       })
       .catch((err) => {
@@ -97,7 +97,7 @@ function App() {
 
   // обработчик постановки/снятия лайка карточек
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i === currentUser.data._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
 
     api.changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
@@ -136,17 +136,17 @@ function App() {
       });
   }
 
-  // эффект для получения массива карточек и данных пользователя с сервера
-  React.useEffect(() => {
-    Promise.all([api.getInitialCards(), api.getUserInfo()])
-      .then(([data, user]) => {
-        setCards(data);
-        setCurrentUser(user)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+    // эффект для получения массива карточек и данных пользователя с сервера
+    React.useEffect(() => {
+      Promise.all([api.getInitialCards(), api.getUserInfo()])
+        .then(([data, user]) => {
+          setCards(data);
+          setCurrentUser(user.data)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, []);
 
   // эффект для закрытия попапов кликом на оверлей или по нажатию клавиши "ESC"
   React.useEffect(() => {
@@ -182,8 +182,6 @@ function App() {
       })
   }
 
-
-
   // обработчик формы компонента Login
   function onLogin(authData) {
     authApi.loginUser(authData)
@@ -214,6 +212,7 @@ function App() {
       authApi.getContent(token)
         .then((res) => {
           setEmail(res.data.email);
+          setCurrentUser(res.data);
           setLoggedIn(true);
           history.push('/');
         })
@@ -223,6 +222,8 @@ function App() {
   useEffect(() => {
     tokenCheck();
   }, [])
+
+
 
   return (
     <div className="root">
