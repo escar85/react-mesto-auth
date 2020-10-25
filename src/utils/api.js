@@ -9,7 +9,7 @@ class Api {
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
-      headers: this._headers
+      headers: this._headers, 'Authorization': `Bearer ${localStorage.getItem('token')}`,
     })
 
       .then(res => {
@@ -28,7 +28,7 @@ class Api {
   setUserInfo(newInfo) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: this._headers, 'Authorization': `Bearer ${localStorage.getItem('token')}`,
       body: JSON.stringify({
         name: newInfo.name,
         about: newInfo.about
@@ -49,7 +49,7 @@ class Api {
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'GET',
-      headers: this._headers
+      headers: this._headers, 'Authorization': `Bearer ${localStorage.getItem('token')}`,
     })
       .then(res => {
         if (res.ok) {
@@ -66,7 +66,7 @@ class Api {
   addCard(cardInfo) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
-      headers: this._headers,
+      headers: this._headers, 'Authorization': `Bearer ${localStorage.getItem('token')}`,
       body: JSON.stringify({
         name: cardInfo.name,
         link: cardInfo.link
@@ -87,7 +87,7 @@ class Api {
   changeLikeCardStatus(cardId, isLiked) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: isLiked ? 'PUT' : 'DELETE',
-      headers: this._headers,
+      headers: this._headers, 'Authorization': `Bearer ${localStorage.getItem('token')}`,
     })
       .then(res => {
         if (res.ok) {
@@ -105,7 +105,7 @@ class Api {
   setUserAvatar(data) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: this._headers, 'Authorization': `Bearer ${localStorage.getItem('token')}`,
       body: JSON.stringify(data)
     })
       .then(res => {
@@ -124,7 +124,7 @@ class Api {
   deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: 'DELETE',
-      headers: this._headers
+      headers: this._headers, 'Authorization': `Bearer ${localStorage.getItem('token')}`,
     })
       .then(res => {
         if (res.ok) {
@@ -143,7 +143,6 @@ class Api {
 const api = new Api({
   baseUrl: 'https://api.escar.students.nomoreparties.space',
   headers: {
-    'Authorization': `Bearer ${localStorage.getItem('token')}`,
     'Content-Type': 'application/json'
   }
 });
