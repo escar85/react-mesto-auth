@@ -48,7 +48,7 @@ function Login(props) {
         onChange={handlePasswordChange}
       />
       <button type="submit" className="entry-form__submit-button">Войти</button>
-      <Link to='/sign-up' className="entry-form__link">Ещё не зарегистрированы? Регистрация</Link>
+      <Link to='/signup' className="entry-form__link">Ещё не зарегистрированы? Регистрация</Link>
     </form>
   );
 }

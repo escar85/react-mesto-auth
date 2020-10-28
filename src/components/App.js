@@ -136,17 +136,17 @@ function App() {
       });
   }
 
-    // эффект для получения массива карточек и данных пользователя с сервера
-    React.useEffect(() => {
-      Promise.all([api.getInitialCards(), api.getUserInfo()])
-        .then(([data, user]) => {
-          setCards(data);
-          setCurrentUser(user.data)
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }, []);
+  // эффект для получения массива карточек и данных пользователя с сервера
+  // React.useEffect(() => {
+  //   Promise.all([api.getInitialCards(), api.getUserInfo()])
+  //     .then(([data, user]) => {
+  //       setCards(data);
+  //       setCurrentUser(user.data)
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   // эффект для закрытия попапов кликом на оверлей или по нажатию клавиши "ESC"
   React.useEffect(() => {
@@ -171,7 +171,7 @@ function App() {
       .then((res) => {
         if (res) {
           setIsSuccessAuth(true);
-          history.push('/sign-in');
+          history.push('/signin');
         }
       })
       .catch((err) => {
@@ -209,15 +209,34 @@ function App() {
   function tokenCheck() {
     const token = localStorage.getItem('token');
     if (token) {
-      authApi.getContent(token)
-        .then((res) => {
-          setEmail(res.data.email);
-          setCurrentUser(res.data);
+      Promise.all([api.getInitialCards(token), authApi.getContent(token)])
+        .then(([data, user]) => {
+          setCards(data);
+          setCurrentUser(user.data)
+          setEmail(user.data.email);
+        })
+        .then(() => {
           setLoggedIn(true);
           history.push('/');
         })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }
+
+  // function tokenCheck() {
+  //   const token = localStorage.getItem('token');
+  //   if (token) {
+  //     authApi.getContent(token)
+  //       .then((res) => {
+  //         setEmail(res.data.email);
+  //         setCurrentUser(res.data);
+  //         setLoggedIn(true);
+  //         history.push('/');
+  //       })
+  //   }
+  // }
 
   useEffect(() => {
     tokenCheck();
@@ -230,7 +249,7 @@ function App() {
       <CurrentUserContext.Provider value={currentUser}>
 
         <Header
-          linkTo='/sign-up'
+          linkTo='/signup'
           linkTitle='Регистрация'
           signOut={onSignOut}
           email={email}
@@ -252,16 +271,16 @@ function App() {
             cards={cards}
           />
 
-          <Route path='/sign-up'>
+          <Route path='/signup'>
             <Register onRegister={onRegister} />
           </Route>
 
-          <Route path='/sign-in'>
+          <Route path='/signin'>
             <Login onLogin={onLogin} />
           </Route>
 
           <Route>
-            {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
+            {loggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
           </Route>
 
         </Switch>

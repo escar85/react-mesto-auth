@@ -23,7 +23,7 @@ function Main(props) {
       </section>
 
       <ul className="elements">
-        {props.cards.map((item, i) => (
+        { props.loggedIn ? props.cards.map((item, i) => (
           <Card
             card={item}
             key={i}
@@ -31,7 +31,7 @@ function Main(props) {
             onCardLike={props.onCardLike}
             onCardDelete={props.onCardDelete}
           />
-        ))}
+        )) : '' }
       </ul>
     </>
   );

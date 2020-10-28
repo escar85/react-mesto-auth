@@ -6,7 +6,7 @@ class Api {
   }
 
   registerUser(authData) {
-    return fetch(`${this._baseUrl}/sign-up`, {
+    return fetch(`${this._baseUrl}/signup`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
@@ -26,7 +26,7 @@ class Api {
   }
 
   loginUser(authData) {
-    return fetch(`${this._baseUrl}/sign-in`, {
+    return fetch(`${this._baseUrl}/signin`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
@@ -73,10 +73,17 @@ class Api {
 
 // создаем класс для работы с Api
 const authApi = new Api({
-  baseUrl: 'https://api.escar.students.nomoreparties.space',
+  baseUrl: 'http://localhost:3000',
   headers: {
     'Content-Type': 'application/json'
   }
 });
 
 export default authApi;
+
+// const authApi = new Api({
+//   baseUrl: 'https://api.escar.students.nomoreparties.space',
+//   headers: {
+//     'Content-Type': 'application/json'
+//   }
+// });

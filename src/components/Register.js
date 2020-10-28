@@ -49,7 +49,7 @@ function Register(props) {
         onChange={handlePasswordChange}
       />
       <button type="submit" className="entry-form__submit-button">Зарегистрироваться</button>
-      <Link to='/sign-in' className="entry-form__link">Уже зарегистрированы? Войти</Link>
+      <Link to='/signin' className="entry-form__link">Уже зарегистрированы? Войти</Link>
     </form>
   );
 }

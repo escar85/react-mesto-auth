@@ -9,11 +9,11 @@ function Header(props) {
   const url = useLocation();
 
   function handleChangeLink() {
-    if (url.pathname === '/sign-in') {
-      setLinkTo('/sign-up');
+    if (url.pathname === '/signin') {
+      setLinkTo('/signup');
       setLinkTitle('Зарегистрироваться')
     } else {
-      setLinkTo('/sign-in');
+      setLinkTo('/signin');
       setLinkTitle('Войти');
     }
   }
@@ -30,7 +30,7 @@ function Header(props) {
         {props.loggedIn ?
           <>
             <h3 className="header__user-email">{props.email}</h3>
-            <Link to='/sign-in' onClick={props.signOut} className="header__link">Выйти</Link>
+            <Link to='/signin' onClick={props.signOut} className="header__link">Выйти</Link>
           </>
           : <Link to={linkTo} className="header__link">{linkTitle}</Link>
         }
