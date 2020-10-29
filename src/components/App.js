@@ -114,7 +114,7 @@ function App() {
   // обработчик удаления карточки
   function handleCardDelete(card) {
     api.deleteCard(card._id)
-      .then(() => {
+      .then((card) => {
         const newCards = cards.filter((c) => c._id !== card._id);
         setCards(newCards);
         closeAllPopups();
@@ -128,6 +128,9 @@ function App() {
   function handleAddPlaceSubmit(newCard) {
     api.addCard(newCard)
       .then((newCard) => {
+        if(!newCard) {
+          throw new Error({message: 'проверьте введенные данные'})
+        }
         setCards([...cards, newCard]);
         closeAllPopups();
       })
@@ -135,18 +138,6 @@ function App() {
         console.log(err);
       });
   }
-
-  // эффект для получения массива карточек и данных пользователя с сервера
-  // React.useEffect(() => {
-  //   Promise.all([api.getInitialCards(), api.getUserInfo()])
-  //     .then(([data, user]) => {
-  //       setCards(data);
-  //       setCurrentUser(user.data)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
 
   // эффект для закрытия попапов кликом на оверлей или по нажатию клавиши "ESC"
   React.useEffect(() => {
@@ -225,23 +216,9 @@ function App() {
     }
   }
 
-  // function tokenCheck() {
-  //   const token = localStorage.getItem('token');
-  //   if (token) {
-  //     authApi.getContent(token)
-  //       .then((res) => {
-  //         setEmail(res.data.email);
-  //         setCurrentUser(res.data);
-  //         setLoggedIn(true);
-  //         history.push('/');
-  //       })
-  //   }
-  // }
-
   useEffect(() => {
     tokenCheck();
   }, [])
-
 
 
   return (

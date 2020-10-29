@@ -157,7 +157,6 @@ class Api {
         if (res.ok) {
           return res.json();
         }
-
         return Promise.reject(`Ошибка: ${res.status}`);
       })
       .catch((err) => {
@@ -168,17 +167,10 @@ class Api {
 
 // создаем класс для работы с Api
 const api = new Api({
-  baseUrl: 'http://localhost:3000',
+  baseUrl: 'https://api.escar.students.nomoreparties.space',
   headers: {
     'Content-Type': 'application/json'
   }
 });
 
 export default api;
-
-// const api = new Api({
-//   baseUrl: 'https://api.escar.students.nomoreparties.space',
-//   headers: {
-//     'Content-Type': 'application/json'
-//   }
-// });
