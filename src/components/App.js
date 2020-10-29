@@ -33,7 +33,7 @@ function App() {
 
   //
   const [selectedCard, setSelectedCard] = React.useState();
-  const [currentUser, setCurrentUser] = React.useState({name: "", about: ""});
+  const [currentUser, setCurrentUser] = React.useState([]);
   const [cards, setCards] = React.useState([]);
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isSuccessAuth, setIsSuccessAuth] = React.useState(false);
