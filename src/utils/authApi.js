@@ -73,12 +73,10 @@ class Api {
 
 // создаем класс для работы с Api
 const authApi = new Api({
-  baseUrl: 'http://localhost:3000',
+  baseUrl: 'https://api.escar.students.nomoreparties.space',
   headers: {
     'Content-Type': 'application/json'
   }
 });
 
 export default authApi;
-
-//https://api.escar.students.nomoreparties.space
