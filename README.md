@@ -14,6 +14,6 @@
 ### Общая и адаптивная верстки проведены на основе макета из Figma.
 
 
-### Ссылка на проект:
-### https://escar85.github.io/mesto-react-auth/
+### Ссылка на бэк:
+### https://github.com/escar85/react-mesto-api-full
 
